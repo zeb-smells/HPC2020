@@ -9,7 +9,7 @@ To get started....
 
 Please keep checking up in the repo during the course for more updates.
 
-Please only use the materials for your course and don't publish them elsewhere as this might spoil the course for future years by letting people see hints and surprises in advance.
+Please only use the materials for your CMEE course at Imperial College London. Please don't repost them elsewhere as this might spoil the course for future years by letting people see hints and surprises in advance.
 
 I hope you enjoy the course,
 
