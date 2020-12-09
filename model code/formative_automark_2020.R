@@ -142,7 +142,7 @@ save_to_file <- function(filename)
   
   write(" ", file = filename, append=TRUE)
   write("Marks for main questions", file = filename, append=TRUE)
-  for(i in c(1,2,3))
+  for(i in c(1,2,3,13,14,15))
   {
     if (final_mark[i] >= 0)
     {
@@ -165,7 +165,7 @@ save_to_file <- function(filename)
   }
   
   write(" ", file = filename, append=TRUE)
-  write("Remember this test only marks questions 1-3", file = filename, append=TRUE)
+  write("Remember this test only marks questions 1-3 and 13-15", file = filename, append=TRUE)
 }
 
 # ======= load the data ======= #
@@ -253,4 +253,94 @@ if(basic_test(this_question,'init_community_min')) {
 }
 save_to_file(paste(test_username,"_HPC_feedback",sep=""))
 
+# ======= test question 13 ======= #
+this_question <- 13 # question number
+if(basic_test(this_question,'species_abundance')) {
+  final_max <- final_mark_max[this_question] # max mark for this question
+  final_mark[this_question] <- final_max
+  
+    test_cases <- list()
+    test_answers <- list()
+    test_cases[[1]] <- (c(1,5,3,6,5,6,1,1))
+    test_answers[[1]] <- c(3,2,2,1)
+    test_cases[[2]] <- c(1,1,1,5,3,6,5,6,1,1)
+    test_answers[[2]] <- c(5,2,2,1)
+    test_cases[[3]] <- c(1,1,1,5,3,6,5,6,1,1,6,6,6,6,100)
+    test_answers[[3]] <-  c(6,5,2,1,1)
+    test_cases[[4]] <- c(1,1,1,5,3,6,5,6,1,1,6,6,6,6,100,101,42)
+    test_answers[[4]] <- c(6,5,2,1,1,1,1) 
+    
+    for (i in 1:length(test_cases)) 
+    {
+      if(!(basic_func_test(this_question,  test_cases[[i]], species_abundance(test_cases[[i]]), test_answers[[i]]))) 
+      { 
+        final_mark[this_question] = final_mark[this_question] -1; 
+      }
+    }
+    
+    if (final_mark[this_question] < 0)
+    {
+        final_mark[this_question] = 0;
+    }
+}
+save_to_file(paste(test_username,"_HPC_feedback",sep=""))
+
+
+# ======= test question 14 ======= #
+this_question <- 14 # question number
+if(basic_test(this_question,'octaves')) {
+    final_max <- final_mark_max[this_question] # max mark for this question
+    final_mark[this_question] = final_max
+    
+    test_cases <- list()
+    test_answers <- list()
+    test_cases[[1]] <- c(100,64,63,5,4,3,2,2,1,1,1,1)
+    test_answers[[1]] <- c(4,3,2,0,0,1,2)
+    test_cases[[2]] <- c(110,100,64,63,5,4,3,2,2,1,1,1,1)
+    test_answers[[2]] <- c(4,3,2,0,0,1,3)
+    test_cases[[3]] <- c(2,2,2,1,1,1,1,1,1)
+    test_answers[[3]] <-  c(6,3)
+    test_cases[[4]] <- c(4,2,2,2,1,1,1,1,1,1)
+    test_answers[[4]] <- c(6,3,1)
+    
+    for (i in 1:length(test_cases)) 
+    {
+      if(!(basic_func_test(this_question,  test_cases[[i]], octaves(test_cases[[i]]), test_answers[[i]]))) 
+      { 
+        final_mark[this_question] = final_mark[this_question] -1; 
+      }
+    }
+    
+    if (final_mark[this_question] < 0)
+    {
+        final_mark[this_question] = 0;
+    }
+}
+save_to_file(paste(test_username,"_HPC_feedback",sep=""))
+
+# ======= test question 15 ======= #
+this_question <- 15 # question number
+if(basic_test(this_question,'sum_vect')) {
+    final_max <- final_mark_max[this_question] # max mark for this question
+    final_mark[this_question] = final_max
+    
+    if(!(basic_func_test(this_question,  NULL, sum_vect(c(1,3),c(1,0,5,2)), c(2,3,5,2),"sum_vect(c(1,3),c(1,0,5,2))"))) { 
+      final_mark[this_question] = final_mark[this_question] -1; 
+    }
+    if(!(basic_func_test(this_question,  NULL, sum_vect(c(4,42),c(5,1)), c(9,43),"sum_vect(c(4,42),c(5,1))"))) { 
+      final_mark[this_question] = final_mark[this_question] -1; 
+    }
+    if(!(basic_func_test(this_question,  NULL, sum_vect(c(5,9,9,1),c(1,0,0)), c(c(6,9,9,1)),"sum_vect(c(5,9,9,1),c(1,0,0))"))) { 
+      final_mark[this_question] = final_mark[this_question] -1; 
+    }
+    if(!(basic_func_test(this_question,  NULL, sum_vect(c(1000,1),c(0,1,42)), c(1000,2,42),"sum_vect(c(1000,1),c(0,1,42))"))) { 
+      final_mark[this_question] = final_mark[this_question] -1; 
+    }
+    
+    if (final_mark[this_question] < 0)
+    {
+        final_mark[this_question] = 0;
+    }
+}
+save_to_file(paste(test_username,"_HPC_feedback",sep=""))
 
