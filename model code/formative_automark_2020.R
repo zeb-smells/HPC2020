@@ -43,7 +43,6 @@ test_data_correct <- function(variable,variable_name,expected_value) {
 } 
 
 load_student_work <- function(student_username) {
-  print(paste(student_username,"/",student_username,"_HPC_",year,"_main.R",sep=""))
   student_file <- paste(student_username,"/",student_username,"_HPC_",year,"_main.R",sep="")
   load_test_data <- list()
   
@@ -142,7 +141,7 @@ save_to_file <- function(filename)
   
   write(" ", file = filename, append=TRUE)
   write("Marks for main questions", file = filename, append=TRUE)
-  for(i in c(1,2,3,13,14,15))
+  for(i in c(1,2,3,13,14,15,24))
   {
     if (final_mark[i] >= 0)
     {
@@ -165,7 +164,7 @@ save_to_file <- function(filename)
   }
   
   write(" ", file = filename, append=TRUE)
-  write("Remember this test only marks questions 1-3 and 13-15", file = filename, append=TRUE)
+  write("Remember this test only marks questions 1-3, 13-15 and 24", file = filename, append=TRUE)
 }
 
 # ======= load the data ======= #
@@ -341,6 +340,46 @@ if(basic_test(this_question,'sum_vect')) {
     {
         final_mark[this_question] = 0;
     }
+}
+save_to_file(paste(test_username,"_HPC_feedback",sep=""))
+
+# ======= test question 24 ======= #
+this_question <- 24 # question number
+if(basic_test(this_question,'turtle')) {
+  final_max <- final_mark_max[this_question] # max mark for this question
+  final_mark[this_question] = final_max
+  
+  graphics.off()
+  plot.new()
+  plot.window(xlim = c(0,5), ylim = c(0,5))
+  
+  returned <- turtle(start_position = c(0,0), direction = (pi/3), length = 5)
+  model_returned <- c(2.5,4.330127)
+  points(model_returned[1],model_returned[2],col="blue")
+  points(model_returned[2],model_returned[1],col="red")
+  points(0,0,col="blue")
+
+  if (is.null(returned))
+  {
+    add_comment(this_question,"did not return an endpoint vector")
+    final_mark[this_question] <- max(final_mark[this_question] - 2,0)
+  } else {
+    if (length(returned)!=2) {
+      add_comment(this_question,"did not return an endpoint vector of length 2")
+      final_mark[this_question] <- max(final_mark[this_question] - 2,0)
+    } else {
+      if (((returned[1]-model_returned[1])^2 + (returned[2]-model_returned[2])^2) > 0.0001) {
+        if (((returned[2]-model_returned[1])^2 + (returned[1]-model_returned[2])^2) < 0.0001) {
+          add_comment(this_question,"returned vector was *almost* correct, axes flipped")
+          final_mark[this_question] <- max(final_mark[this_question] - 1,0)
+        } else {
+          add_comment(this_question,"returned vector didn't match expected")
+          final_mark[this_question] <- max(final_mark[this_question] - 2,0)
+        }
+      }
+    }
+  }
+
 }
 save_to_file(paste(test_username,"_HPC_feedback",sep=""))
 
