@@ -178,7 +178,7 @@ draw_fern <- function()  {
 }
 
 # Question 30
-fern2 <- function(start_position, direction, length)  {
+fern2 <- function(start_position, direction, length, dir)  {
   
 }
 draw_fern2 <- function()  {
