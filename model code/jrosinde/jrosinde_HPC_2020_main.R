@@ -5,6 +5,7 @@ name <- "James Rosindell"
 preferred_name <- "James"
 email <- "j.rosindell@imperial.ac.uk"
 username <- "jrosinde"
+personal_speciation_rate <- 0.002 # will be assigned to each person individually in class and should be between 0.002 and 0.007
 
 # please remember *not* to clear the workspace here, or anywhere in this file. If you do, it'll wipe out your username information that you entered just above, and when you use this file as a 'toolbox' as intended it'll also wipe away everything you're doing outside of the toolbox.  For example, it would wipe away any automarking code that may be running and that would be annoying!
 
