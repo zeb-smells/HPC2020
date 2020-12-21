@@ -77,8 +77,9 @@ question_8 <- function() {
 
   #plot graph
   graphics.off()
-  plot(diversity, ylab = "Species Richness", xlab = "Generations", col = "darkred")
-  
+  p <- plot(diversity, ylab = "Species Richness", xlab = "Generations", col = "darkred")
+  print(p)
+
   return("The system will always reduce to a species richness of 1. As there is no speciation. 
   no new species can be introduced the system and the number will always reduce and monodominance achieved.")
 }
@@ -149,7 +150,8 @@ question_12 <- function() {
   
   #plot
   graphics.off()
-  qplot(Generations, Species.Richness, data = temp, colour = Minmax)
+  p <- qplot(Generations, Species.Richness, data = temp, colour = Minmax)
+  print(p)
 
   return("Regardless of the initial conditions the system reaches a dynamic equilibrium 
   determined by the speciation rate.")
@@ -496,7 +498,8 @@ Challenge_A <- function() {
   
   #plot
   graphics.off()
-  qplot(Generations, Species.Richness, data = temp, colour = Minmax)
+  p <- qplot(Generations, Species.Richness, data = temp, colour = Minmax)
+  print(p)
 } # not finished need to add stuff
 
 # CHALLENGE QUESTION B
@@ -521,7 +524,8 @@ Challenge_B <- function() {
 
   #plot
   graphics.off()
-  qplot(Generations, Species.Richness, data = temp, colour = Initial.Richness, alpha = 0.8)
+  p <- qplot(Generations, Species.Richness, data = temp, colour = Initial.Richness, alpha = 0.8)
+  print(p)
 }
 
 # CHALLENGE QUESTION C
