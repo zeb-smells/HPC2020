@@ -1,0 +1,57 @@
+Running
+
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # CMEE 2020 HPC excercises R code HPC run code proforma
+> 
+> rm(list=ls()) # good practice 
+> graphics.off()
+> 
+> source("/rds/general/user/zb520/home/zeb-smells_HPC_2020_main.R")
+> 
+> iter <- as.numeric(Sys.getenv("PBS_ARRAY_INDEX")) 
+> 
+> set.seed(iter)
+> 
+> if(iter <= 25){
++     size <- 500
++ }else if(iter <= 50){
++     size <- 1000
++ }else if(iter <= 75){
++     size <- 2500
++ }else if(iter <= 100){
++     size <- 5000
++ }
+> 
+> file_name <- paste("Simulation", as.character(iter), ".RData", sep = "")
+> 
+> cluster_run(0.0045432, size, 11.5*60, 1, size/10, 8*size, file_name)
+[1] "The output has been saved to Simulation56.RData"
+> 
+finished
+
+============================================
+
+        Job resource usage summary 
+
+                 Memory (GB)    NCPUs
+ Requested  :         1             1
+ Used       :         0 (peak)   0.98 (ave)
+
+============================================

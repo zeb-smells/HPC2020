@@ -4,7 +4,7 @@
 # I've given you the proforma with my username jrosinde so you'll obviously need to change that
 
 rm(list=ls())
-test_username <- "jrosinde" # this should be your username
+test_username <- "zb520" # this should be your username
 year <- 2020
 # ======= MARK DATA INITIALISATION ======= #
 
